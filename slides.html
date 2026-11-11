@@ -152,6 +152,35 @@ body{background:var(--page);font-family:var(--sans);overflow:hidden;-webkit-font
 .next span{font-size:1.2cqw;letter-spacing:.2cqw;color:var(--mute);font-weight:700}.next b{font-size:2.8cqw;font-weight:800}.next em{font-style:normal;font-size:1.5cqw;color:var(--mute)}
 .refs{columns:2;column-gap:4cqw;padding-left:2.2cqw;margin-top:1cqw;font-size:1.45cqw;line-height:1.5;color:#D1D1D6}.refs li{break-inside:avoid;margin-bottom:1.1cqw;padding-left:.4cqw}.refs li::marker{color:var(--mute);font-weight:700}
 .dots{max-width:46vw;overflow:hidden}
+.sf li.x i svg{width:55%;height:55%;fill:none;stroke:#F5F5F7;stroke-width:3;stroke-linecap:round}
+.sf li.x i svg path{stroke-dasharray:15;stroke-dashoffset:0}
+.sf::before,.sf::after{transform-origin:0 50%}
+@keyframes sfline{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes sfin{from{opacity:0;transform:translateY(1cqw)}to{opacity:1;transform:none}}
+@keyframes xpop{0%{opacity:0;transform:scale(0)}60%{opacity:1;transform:scale(1.25)}100%{opacity:1;transform:scale(1)}}
+@keyframes xdraw{from{stroke-dashoffset:15}to{stroke-dashoffset:0}}
+@keyframes xshake{0%,100%{transform:translateX(0)}20%{transform:translateX(-.7cqw) rotate(-6deg)}40%{transform:translateX(.6cqw) rotate(5deg)}60%{transform:translateX(-.4cqw) rotate(-3deg)}80%{transform:translateX(.2cqw)}}
+@keyframes xglow{0%{box-shadow:0 0 0 0 rgba(245,245,247,.6)}100%{box-shadow:0 0 0 2.2cqw rgba(245,245,247,0)}}
+.on .sf{animation:none!important;opacity:1}
+.on .sf::before{animation:sfline 1s .3s cubic-bezier(.4,0,.2,1) both}
+.on .sf::after{animation:sfline .6s 1.3s linear both}
+.on .sf li{animation:sfin .6s cubic-bezier(.2,.8,.2,1) both}
+.on .sf li:nth-child(1){animation-delay:.2s}.on .sf li:nth-child(2){animation-delay:.55s}.on .sf li:nth-child(3){animation-delay:.9s}
+.on .sf li.x{animation:none}
+.on .sf li.x i{animation:xpop .5s 1.9s cubic-bezier(.3,1.4,.5,1) both,xshake .5s 2.6s ease-in-out,xglow .9s 2.6s ease-out}
+.on .sf li.x i svg path{animation:xdraw .25s 2.2s ease-out both}
+.on .sf li.x i svg path:nth-child(2){animation-delay:2.4s}
+.on .sf li.x b,.on .sf li.x em{animation:sfin .5s 2.6s cubic-bezier(.2,.8,.2,1) both}
+@media (prefers-reduced-motion:reduce){.on .sf *,.on .sf::before,.on .sf::after{animation:none!important}}
+.sf{list-style:none;padding:0;margin-top:4.4cqw;display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+.sf::before{content:"";position:absolute;left:12.5%;right:37.5%;top:2cqw;border-top:.25cqw solid #F5F5F7}
+.sf::after{content:"";position:absolute;left:62.5%;right:12.5%;top:2cqw;border-top:.25cqw dashed #636366}
+.sf li{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1cqw;position:relative;z-index:1}
+.sf i{width:4cqw;height:4cqw;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:1.6cqw;font-weight:800;background:#F5F5F7;color:#000}
+.sf li.x i{background:#000;color:#F5F5F7;border:.25cqw solid #F5F5F7}
+.sf b{font-size:2.3cqw;font-weight:800;margin-top:.6cqw}
+.sf em{font-style:normal;font-size:1.25cqw;color:#AEAEB2;padding:.6cqw 1.2cqw;border-radius:99cqw;border:.12cqw solid #3A3A3C}
+.sf li.x em{color:#F5F5F7;border-color:#F5F5F7}
 .vq{margin-top:3.4cqw}.vq div{display:flex;align-items:baseline;gap:3cqw;padding:1.8cqw 0;border-top:.12cqw solid #D2D2D7}.vq dt{flex:0 0 7cqw;font-size:1.4cqw;font-weight:700;letter-spacing:.2cqw;color:var(--mute)}.vq dd{margin:0;font-size:2.8cqw;font-weight:800;color:#1D1D1F}
 .steps li.done i{background:currentColor}.steps li.todo i{border-style:dashed;background:var(--w-bg)}.steps li.todo b{color:var(--mute)}
 .end .main{justify-content:center;gap:0}
@@ -351,6 +380,18 @@ html.fs body{background:#000}
     <svg class="chart rv" style="margin-top:.6cqw" viewBox="0 0 1000 290" role="img" aria-label="20 則負評依步驟分類：查詢 2、登入驗證 3、選位 1、付款 2、取票與行程 7、改退與客服 1，另有連線卡頓 3"><rect x="40" y="198" width="92" height="52" rx="9" fill="#D2D2D7"/><text x="86.0" y="186" text-anchor="middle" font-size="28" font-weight="800" fill="#86868B">2</text><text x="86.0" y="288" text-anchor="middle" font-size="21" font-weight="500" fill="#86868B">查詢</text><rect x="158" y="172" width="92" height="78" rx="9" fill="#D2D2D7"/><text x="204.0" y="160" text-anchor="middle" font-size="28" font-weight="800" fill="#86868B">3</text><text x="204.0" y="288" text-anchor="middle" font-size="21" font-weight="500" fill="#86868B">登入驗證</text><rect x="276" y="224" width="92" height="26" rx="9" fill="#D2D2D7"/><text x="322.0" y="212" text-anchor="middle" font-size="28" font-weight="800" fill="#86868B">1</text><text x="322.0" y="288" text-anchor="middle" font-size="21" font-weight="500" fill="#86868B">選位</text><rect x="394" y="198" width="92" height="52" rx="9" fill="#D2D2D7"/><text x="440.0" y="186" text-anchor="middle" font-size="28" font-weight="800" fill="#86868B">2</text><text x="440.0" y="288" text-anchor="middle" font-size="21" font-weight="500" fill="#86868B">付款</text><rect x="512" y="68" width="92" height="182" rx="9" fill="#1D1D1F"/><text x="558.0" y="56" text-anchor="middle" font-size="28" font-weight="800" fill="#1D1D1F">7</text><text x="558.0" y="288" text-anchor="middle" font-size="21" font-weight="700" fill="#1D1D1F">取票・行程</text><rect x="630" y="224" width="92" height="26" rx="9" fill="#D2D2D7"/><text x="676.0" y="212" text-anchor="middle" font-size="28" font-weight="800" fill="#86868B">1</text><text x="676.0" y="288" text-anchor="middle" font-size="21" font-weight="500" fill="#86868B">改退・客服</text><line x1="30" y1="250" x2="732" y2="250" stroke="#D2D2D7" stroke-width="2"/><line x1="762" y1="60" x2="762" y2="250" stroke="#E5E5EA" stroke-width="2" stroke-dasharray="6 6"/><rect x="802" y="172" width="92" height="78" rx="9" fill="none" stroke="#C7C7CC" stroke-width="3" stroke-dasharray="8 6"/><text x="848.0" y="160" text-anchor="middle" font-size="28" font-weight="800" fill="#86868B">3</text><text x="848.0" y="288" text-anchor="middle" font-size="21" fill="#86868B">連線卡頓</text></svg>
     <div class="rate rv"><em>各 App 的 App Store 評分</em><span class=""><b>2.2</b>高鐵 T Express</span><span class=""><b>4.6</b>長榮航空</span><span class=""><b>4.6</b>Trip.com</span><span class=""><b>4.8</b>Skyscanner</span></div>
     <span class="src">來源 [9] App Store 與 mwm.ai 公開評論，擷取至 2026/11；一則評論可能涵蓋多個步驟</span>
+  </div></div></section>
+
+  <section class="sc"><div class="w"><div data-sec="洞察" data-gate="03" class="t k">
+    <p class="eyebrow rv">取票・分票</p>
+    <h2 class="h rv" style="font-size:4.2cqw">分票，卡住了一家人。</h2>
+    <ol class="sf rv">
+      <li><i>1</i><b>幫全家訂票</b><em>被強制分票，沒有說明</em></li>
+      <li><i>2</i><b>一張張分票</b><em>QR Code 要分給每個人</em></li>
+      <li><i>3</i><b>家人換手機</b><em>票綁在買票的那支手機</em></li>
+      <li class="x"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg></i><b>到站拿不到票</b><em>票叫不出來</em></li>
+    </ol>
+    <span class="src">來源 [9] App Store、mwm.ai「台灣高鐵 T Express」使用者評論</span>
   </div></div></section>
 
   <section class="sc"><div class="w"><div data-sec="洞察" data-gate="03" class="t k">
