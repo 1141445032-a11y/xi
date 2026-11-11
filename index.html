@@ -879,8 +879,8 @@ const mkT=o=>({pax:1,status:'done',seats:[],...o});
 const S={tab:'home',mode:'flight',flightOD:['TPE','NRT'],trainOD:[1,6],trip:'單程',dIdx:6,rIdx:10,pax:1,sort:'推薦',slot:'全部',loading:false,limit:8,spin:0,
  picking:null,pq:'',
  loggedIn:false,pick:null,fam:'std',car:'std',seats:[],seatCar:3,addons:{bag:false,meal:false},promo:'',promoOk:false,points:false,pay:'apple',holdUntil:null,
- lang:'zh',cur:'TWD',theme:'light',themeAuto:false,nick:'林小姐',avatar:null,phone:'0912 345 678',trMode:'mrt',line:null,alerts:{},geo:null,geoState:'off',geoErr:'',
- paxList:[{id:'p1',name:'LIN MEI-LING',nick:'林小姐',type:'成人',doc:'3•••••••7',idn:'A12••••••8'},{id:'p2',name:'CHEN YU-TING',nick:'陳先生',type:'成人',doc:'3•••••••2',idn:'F12••••••3'},{id:'p3',name:'LIN YU-AN',nick:'安安',type:'孩童',doc:'',idn:'A18••••••5'}],
+ lang:'zh',cur:'TWD',theme:'light',themeAuto:false,nick:'Xi',avatar:null,phone:'0912 345 678',trMode:'mrt',line:null,alerts:{},geo:null,geoState:'off',geoErr:'',
+ paxList:[{id:'p1',name:'LIN MEI-LING',nick:'Xi',type:'成人',doc:'3•••••••7',idn:'A12••••••8'},{id:'p2',name:'CHEN YU-TING',nick:'陳先生',type:'成人',doc:'3•••••••2',idn:'F12••••••3'},{id:'p3',name:'LIN YU-AN',nick:'安安',type:'孩童',doc:'',idn:'A18••••••5'}],
  paxSel:['p1'],edit:null,
  recent:[{mode:'train',od:[1,6],dIdx:0,t:'今天 08:12'},{mode:'flight',od:['TPE','KIX'],dIdx:9,t:'昨天'},{mode:'train',od:[1,11],dIdx:4,t:'12/9'}],
  tickets:[
@@ -975,7 +975,7 @@ function avatar(sz){const a=S.avatar,r=`width:${sz}px;height:${sz}px;border-radi
  if(S.loggedIn&&a&&a.type==='img')return `<img src="${a.src}" alt="頭像" style="${r}object-fit:cover;display:block">`;
  if(S.loggedIn&&a&&a.type==='cat'){const dark=['#1D1D1F','#3C3C43','#8E8E93','#1F2634'].includes(a.bg);return `<span style="${r}background:${a.bg};display:grid;place-items:center;color:${dark?'#fff':'#1D1D1F'}" role="img" aria-label="頭像"><svg style="width:${sz*.58}px;height:${sz*.58}px"><use href="#cat"/></svg></span>`}
  if(!S.loggedIn)return `<span style="${r}background:var(--card);display:grid;place-items:center;color:var(--mute)" role="img" aria-label="未登入"><svg viewBox="0 0 24 24" style="width:${sz*.5}px;height:${sz*.5}px" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z"/></svg></span>`;
- return `<span style="${r}background:var(--line);display:grid;place-items:center;font-weight:800;font-size:${sz*.4}px" role="img" aria-label="頭像" translate="no">${esc([...S.nick][0]||'林')}</span>`}
+ return `<span style="${r}background:var(--line);display:grid;place-items:center;font-weight:800;font-size:${sz*.4}px" role="img" aria-label="頭像" translate="no">${esc([...S.nick][0]||'X')}</span>`}
 
 /* 班次卡片 */
 function trainCard(x,o={}){const [a,b]=OD();return `<button class="pass" data-act="${o.act||'pick'}" data-id="${x.id}">
