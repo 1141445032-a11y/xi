@@ -152,6 +152,8 @@ body{background:var(--page);font-family:var(--sans);overflow:hidden;-webkit-font
 .next span{font-size:1.2cqw;letter-spacing:.2cqw;color:var(--mute);font-weight:700}.next b{font-size:2.8cqw;font-weight:800}.next em{font-style:normal;font-size:1.5cqw;color:var(--mute)}
 .refs{columns:2;column-gap:4cqw;padding-left:2.2cqw;margin-top:1cqw;font-size:1.45cqw;line-height:1.5;color:#D1D1D6}.refs li{break-inside:avoid;margin-bottom:1.1cqw;padding-left:.4cqw}.refs li::marker{color:var(--mute);font-weight:700}
 .dots{max-width:46vw;overflow:hidden}
+.vq{margin-top:3.4cqw}.vq div{display:flex;align-items:baseline;gap:3cqw;padding:1.8cqw 0;border-top:.12cqw solid #D2D2D7}.vq dt{flex:0 0 7cqw;font-size:1.4cqw;font-weight:700;letter-spacing:.2cqw;color:var(--mute)}.vq dd{margin:0;font-size:2.8cqw;font-weight:800;color:#1D1D1F}
+.steps li.done i{background:currentColor}.steps li.todo i{border-style:dashed;background:var(--w-bg)}.steps li.todo b{color:var(--mute)}
 .end .main{justify-content:center;gap:0}
 .scene{position:relative;width:78cqw;height:28cqw;margin:0 auto}
 .path{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
@@ -277,9 +279,9 @@ html.fs body{background:#000}
 
   <section class="sc"><div class="w"><div data-sec="研究" data-gate="02" class="t l">
     <p class="eyebrow rv">研究方法</p>
-    <h2 class="h rv">五個方法，找出真正的問題。</h2>
+    <h2 class="h rv">四步已完成，測試是下一步。</h2>
     <ol class="steps rv">
-      <li><i></i><b>問卷</b><span>量化</span></li><li><i></i><b>訪談</b><span>質性</span></li><li><i></i><b>競品</b><span>分析</span></li><li><i></i><b>分析</b><span>綜整</span></li><li class="last"><i></i><b>測試</b><span>驗證</span></li>
+      <li class="done"><i></i><b>公開數據</b><span>觀光署、高鐵</span></li><li class="done"><i></i><b>競品分析</b><span>4 款 App</span></li><li class="done"><i></i><b>評論分析</b><span>30 則評論</span></li><li class="done"><i></i><b>原型</b><span>40 個畫面・已上線</span></li><li class="todo"><i></i><b>測試</b><span>下一步</span></li>
     </ol>
   </div></div></section>
 
@@ -312,10 +314,14 @@ html.fs body{background:#000}
   </div></div></section>
 
   <section class="sc"><div class="w"><div data-sec="研究" data-gate="02" class="t l">
-    <p class="eyebrow rv">訪談示例</p>
-    <blockquote class="quote rv">「高鐵要開兩個 App，<br>機票又要另外比價。」</blockquote>
-    <p class="cap rv">付款安全、改退票規則清楚，是受訪者最在意的兩件事。</p>
-    <span class="src">示例內容，正式版本請替換為實際訪談</span>
+    <p class="eyebrow rv">使用者怎麼說</p>
+    <h2 class="h rv" style="font-size:4.2cqw">評論裡，一直出現這三件事。</h2>
+    <dl class="vq rv">
+      <div><dt>取票</dt><dd>「說明很不明瞭還得另外查詢」</dd></div>
+      <div><dt>驗證</dt><dd>「認證機制該改一下了吧」</dd></div>
+      <div><dt>選位</dt><dd>「國外高鐵都可選位」</dd></div>
+    </dl>
+    <span class="src">來源 [9] App Store「台灣高鐵 T Express」使用者評論標題</span>
   </div></div></section>
 
   <section class="sc"><div class="w"><div data-sec="研究" data-gate="02" class="t k split">
@@ -323,17 +329,18 @@ html.fs body{background:#000}
     <div>
       <p class="eyebrow rv">人物誌</p>
       <h2 class="h rv">Xi，28 歲。</h2>
-      <p class="cap rv">台北上班族，常出國，週末搭高鐵返鄉。最怕在兩個 App 之間切換，付款失敗時不知道怎麼辦。</p>
-      <span class="src">情境假設，待訪談驗證</span>
+      <p class="cap rv">台北上班族，常出國，連假搭高鐵返鄉，常幫家人一起訂票。訂機票的 App 用得順手，回到台灣卻卡在分票、驗證碼，家人到了車站還拿不到票。</p>
+      <span class="src">依第 13 頁公開評論歸納的情境</span>
     </div>
   </div></div></section>
 
   <section class="sc"><div class="w"><div data-sec="研究" data-gate="02" class="t k">
     <p class="eyebrow rv">同理心地圖</p>
     <div class="quad rv">
-      <div><b>想</b><span>哪個班次最適合？</span></div><div><b>感</b><span>怕搶票、怕付款出錯</span></div>
-      <div><b>做</b><span>多個 App 查詢、截圖保存</span></div><div><b>聽</b><span>社群推薦、高鐵公告</span></div>
+      <div><b>想</b><span>「登入了，為什麼還要驗證碼？」</span></div><div><b>感</b><span>怕家人的票沒分到，到站才發現</span></div>
+      <div><b>做</b><span>一個 App 買票、另一個 App 乘車</span></div><div><b>聽</b><span>App Store 評論、高鐵 App 公告</span></div>
     </div>
+    <span class="src">依第 13 頁公開評論歸納</span>
   </div></div></section>
 
   <section class="sc"><div class="w"><div data-sec="洞察" data-gate="03" class="t l">
