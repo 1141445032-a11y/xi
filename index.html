@@ -841,12 +841,18 @@ const linesAt=n=>MRT.filter(l=>l.st.includes(n));
 function placeName(){const g=here();if(g.src==='manual')return g.name;const m=nearList(GEO_MRT)[0],r=nearList(GEO_TRA)[0];
  if(m.d<800)return `捷運${stn(m.n)}附近`;if(r.d<3000)return `${r.n}車站附近`;if(m.d<3000)return `捷運${stn(m.n)}附近`;return `${g.lat.toFixed(4)}, ${g.lon.toFixed(4)}`}
 // 以使用者為中心、半徑約 1.2 公里的小地圖，畫出附近捷運站與台鐵站
+// 站名標籤：依序試右、左、下、上，選第一個不超出地圖、也不和其他站名重疊的位置
+function xiLbl(p,placed){const w=[...p.n].reduce((a,c)=>a+(c.charCodeAt(0)>255?10:6),0),h=10,cx=Math.min(Math.max(p.x,w/2+2),358-w/2);
+ const C=[{x:p.x+8,y:p.y+4,a:'start',bx:p.x+8,by:p.y-6},{x:p.x-8,y:p.y+4,a:'end',bx:p.x-8-w,by:p.y-6},{x:cx,y:p.y+17,a:'middle',bx:cx-w/2,by:p.y+8},{x:cx,y:p.y-9,a:'middle',bx:cx-w/2,by:p.y-18}];
+ const inB=c=>c.bx>=2&&c.bx+w<=358&&c.by>=0&&c.by+h<=150,free=c=>!placed.some(b=>c.bx<b.x+b.w+2&&c.bx+w+2>b.x&&c.by<b.y+b.h+1&&c.by+h+1>b.y);
+ const c=C.find(c=>inB(c)&&free(c))||C.find(inB)||C[0];placed.push({x:c.bx,y:c.by,w,h});
+ return `<text x="${c.x.toFixed(1)}" y="${c.y.toFixed(1)}" font-size="10" fill="#3C3C43"${c.a!=='start'?` text-anchor="${c.a}"`:''}>${p.n}</text>`}
 function geoMap(){const g=here(),s=.06;const pts=[];
  for(const [n,[la,lo]] of Object.entries(GEO_MRT)){const dx=(lo-g.lon)*Math.PI/180*6371000*Math.cos(g.lat*Math.PI/180),dy=(la-g.lat)*Math.PI/180*6371000;const x=180+dx*s,y=75-dy*s;if(x>8&&x<352&&y>8&&y<142)pts.push({n,x,y,k:'m'})}
  for(const [n,[la,lo]] of Object.entries(GEO_TRA)){const dx=(lo-g.lon)*Math.PI/180*6371000*Math.cos(g.lat*Math.PI/180),dy=(la-g.lat)*Math.PI/180*6371000;const x=180+dx*s,y=75-dy*s;if(x>8&&x<352&&y>8&&y<142)pts.push({n:n+'站',x,y,k:'t'})}
- const acc=g.acc?Math.min(70,Math.max(10,g.acc*s)):22;
+ const placed=[];const acc=g.acc?Math.min(70,Math.max(10,g.acc*s)):22;
  return `<svg viewBox="0 0 360 150" role="img" aria-label="附近站點地圖"><rect width="360" height="150" fill="#F2F2F7"/><path d="M0 75H360M180 0V150" stroke="#E5E5EA" stroke-width="1"/><circle cx="180" cy="75" r="72" fill="none" stroke="#E5E5EA" stroke-dasharray="3 4"/>
-  ${pts.map(p=>`<g>${p.k==='m'?`<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="5" fill="#fff" stroke="#1D1D1F" stroke-width="2"/>`:`<rect x="${(p.x-5).toFixed(1)}" y="${(p.y-5).toFixed(1)}" width="10" height="10" rx="2" fill="#8E8E93"/>`}<text x="${(p.x+8).toFixed(1)}" y="${(p.y+4).toFixed(1)}" font-size="10" fill="#3C3C43">${p.n}</text></g>`).join('')}
+  ${pts.map(p=>`<g>${p.k==='m'?`<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="5" fill="#fff" stroke="#1D1D1F" stroke-width="2"/>`:`<rect x="${(p.x-5).toFixed(1)}" y="${(p.y-5).toFixed(1)}" width="10" height="10" rx="2" fill="#8E8E93"/>`}${xiLbl(p,placed)}</g>`).join('')}
   <circle cx="180" cy="75" r="${acc.toFixed(1)}" fill="#1D1D1F" opacity=".1"/><circle cx="180" cy="75" r="7" fill="#1D1D1F" stroke="#fff" stroke-width="2.5"/><text x="350" y="144" text-anchor="end" font-size="9" fill="#8E8E93">半徑 1.2 公里</text></svg>`}
 function locCard(compact){const g=here();const st=S.geoState==='locating'?'定位中…':g.src==='gps'?`精準定位 · 誤差約 ${g.acc} 公尺`:g.src==='manual'?'手動選擇的位置':'預設位置，尚未定位';
  return `<div class="card loc"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div style="min-width:0"><div style="font-size:12px;color:var(--mute)">${st}</div><div style="font-size:17px;font-weight:700;margin-top:2px">${placeName()}</div></div>
